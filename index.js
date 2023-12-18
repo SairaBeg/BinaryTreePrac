@@ -25,16 +25,13 @@ n2.right = n6;
 // /  \     \
 //n4   n6    n5
 const depthFirstValues = (root) => {
-  if (root == null) {
-    return [];
-  }
+  if (root === null) return [];
   const stack = [root];
   const values = [];
 
   while (stack.length > 0) {
     const curr = stack.pop();
     values.push(curr.value);
-
     if (curr.right != null) {
       stack.push(curr.right);
     }
@@ -53,9 +50,9 @@ const depthFirstRecur = (root) => {
 };
 
 const bFirstValues = (root) => {
+  if (root === null) return [];
   const queue = [root];
   const values = [];
-  if (root === null) return [];
   while (queue.length > 0) {
     const curr = queue.shift();
     values.push(curr.value);
@@ -70,7 +67,6 @@ const bFirstValues = (root) => {
 };
 const bFirstRecur = (root) => {
   if (root == null) return [];
-
   const queue = [root];
   const values = [];
   const traverse = () => {
