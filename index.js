@@ -5,7 +5,7 @@ class Node {
     this.right = null;
   }
 }
-
+//Initialize Tree
 const n1 = new Node(1);
 const n2 = new Node(2);
 const n3 = new Node(3);
@@ -76,8 +76,8 @@ const bFirstRecur = (root) => {
   const traverse = () => {
     if (queue.length === 0) return;
     const curr = queue.shift();
-
     values.push(curr.value);
+
     if (curr.left !== null) {
       queue.push(curr.left);
     }
@@ -89,7 +89,29 @@ const bFirstRecur = (root) => {
   traverse();
   return values;
 };
+const treeIncludesB = (root, target) => {
+  if (root == null) return false;
+  const queue = [root];
+  while (queue.length > 0) {
+    const curr = queue.shift();
+    if (curr.value === target) return true;
+    if (curr.left != null) {
+      queue.push(curr.left);
+    }
+    if (curr.right != null) {
+      queue.push(curr.right);
+    }
+  }
+  return false;
+};
+const treeIncludesD = (root, target) => {
+  if (root === null) return false;
+  if (root.value === target) return true;
+  return treeIncludesD(root.left, target) || treeIncludesD(root.right, target);
+};
 console.log("Depth First Iter:", depthFirstValues(n1));
 console.log("Depth First Recur:", depthFirstRecur(n1));
 console.log("Breadth First Iter:", bFirstValues(n1));
 console.log("Breadth First Recur:", bFirstRecur(n1));
+console.log("treeIncludes Bfirst:", treeIncludesB(n1, 9));
+console.log("treeIncludes Dfirst:", treeIncludesD(n1, 3));
